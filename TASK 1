@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab_6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Cat milka = new Cat(6, "Black", 2);
+            Dog hawra = new Dog(3, "Brown", 2);
+
+            Console.WriteLine(milka.ToString());
+            Console.WriteLine(milka.MakeSound());
+            Console.WriteLine(hawra.ToString());
+            Console.WriteLine(hawra.MakeSound());
+
+            Console.ReadKey();
+        }
+    }
+    public abstract class Animal
+    {
+        protected float weight;
+        protected string color;
+        public float Weight
+        {
+            get { return weight; }
+            set { this.weight = value; }
+        }
+        public string Color
+        {
+            get { return color; }
+            set { this.color = value; }
+        }
+        public Animal(float weight, string color)
+        {
+            this.weight = Weight;
+            this.color = Color;
+        }
+        public abstract string MakeSound();
+    }          
+    public abstract class AnimalWithTail : Animal
+    {
+        protected float TailLenght
+        {
+            get { return taillength; }
+            set { this.taillength = value; }
+        }
+        public AnimalWithTail(float weight, string color, float tailleight) : base(weight, color)
+        {
+            this.Weight = weight;
+            this.Color = color;
+            this.TailLenght = tailleight;
+        }
+    }
+    public class Cat : AnimalWithTail
+    {
+        public Cat(float weight, string color, float tailleight) : base(weight, color, tailleight)
+        {
+            this.Weight = weight;
+            this.Color = color;
+            this.TailLenght = tailleight;
+        }
+        private string Purr()
+        {
+            return "purrrrrrrrr";
+        }
+        private string Meow()
+        {
+            return "Meow";
+        }
+        public override string MakeSound()
+        {
+            return Purr() + Meow();
+        }
+        public override string ToString()
+        {
+            return $"This is a Cat, Color = {Color}, Weight = {Weight}, TailLenght = {TailLenght}";
+        }
+    }
+    public class Dog: AnimalWithTail
+    {
+        public Dog(float weight, string color, float tailleight) : base(weight, color, tailleight)
+        {
+            this.Weight = weight;
+            this.Color = color;
+            this.TailLenght = tailleight;
+        }
+
+        public override string MakeSound()
+        {
+            return "Woof";
+        }
+        public override string ToString()
+        {
+            return $"This is a Cat, Color = {Color}, Weight = {Weight}, TailLength = {TailLenght}";
+        }
+    }
+}
